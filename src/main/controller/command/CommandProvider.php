@@ -1,9 +1,4 @@
 <?php
-
-namespace Controller\Command;
-
-use CommandException;
-
 enum CommandProvider: string
 {
     case TEST_COMMAND = "impl/TestCommand.php";
