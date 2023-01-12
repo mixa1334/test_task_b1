@@ -59,14 +59,14 @@ DROP TABLE IF EXISTS `files`;
 CREATE TABLE `files` (
   `id` int(11) UNSIGNED NOT NULL,
   `name` varchar(100) NOT NULL,
-  `extention` varchar(10) NOT NULL
+  `extension` varchar(10) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
 -- Dumping data for table `files`
 --
 
-INSERT INTO `files` (`id`, `name`, `extention`) VALUES
+INSERT INTO `files` (`id`, `name`, `extension`) VALUES
 (1, 'import_departments', 'csv'),
 (3, 'import_users', 'csv');
 
