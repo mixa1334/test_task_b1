@@ -7,6 +7,6 @@ class Controller
 {
     public function executeRequest(): void
     {
-        //todo logic and ex
+        //todo front controller logic
     }
 }

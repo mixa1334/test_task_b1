@@ -2,24 +2,14 @@
 
 class DepartmentDao implements Dao
 {
-    function getById($id)
-    {
-        // TODO: Implement getById() method.
-    }
-
-    function getAll()
+    function getAll(): array
     {
         // TODO: Implement getAll() method.
     }
 
-    function create($item)
+    function addAll(array $items): void
     {
-        // TODO: Implement create() method.
-    }
-
-    function delete($id)
-    {
-        // TODO: Implement delete() method.
+        // TODO: Implement addAll() method.
     }
 
 }

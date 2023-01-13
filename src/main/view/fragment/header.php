@@ -1,11 +1,9 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title><?php echo $title; ?></title>
-    <!--    <link rel="stylesheet" href="css/main.css">-->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet">
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"></script>
 </head>
@@ -18,13 +16,13 @@
             <div class="collapse navbar-collapse" style="margin-left: 5%">
                 <ul class="navbar-nav me-auto">
                     <li class="nav-item">
-                        <a class="nav-link" href="#">Records</a>
+                        <a class="nav-link" href="/index.php?command=SHOW_RECORDS_PAGE">Данные</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="#">Files</a>
+                        <a class="nav-link" href="/index.php?command=SHOW_UPLOADS_PAGE">Файлы</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="#">FAQ</a>
+                        <a class="nav-link" href="/index.php?command=SHOW_FAQ_PAGE">FAQ</a>
                     </li>
                 </ul>
             </div>
@@ -33,5 +31,4 @@
 </header>
 <main>
     <div class="container">
-
-<!--        todo hrefs-->
+        <div class="container-fluid" style="margin-top:10%">

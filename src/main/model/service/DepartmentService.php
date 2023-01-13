@@ -4,5 +4,7 @@ interface DepartmentService
 {
     function getAllDepartments(): array;
 
-    //todo save as file (all departments)
+    function uploadDepartmentsFromFile(string $filePath): void;
+
+    function downloadDepartmentsAsFile(): void;
 }

@@ -2,10 +2,11 @@
 
 interface FileService
 {
-    function removeFile(int $id): void;
+    function removeFile(string $fileName): void;
 
-    //todo (file var) + save all info as file
-    function uploadFile($file): void;
+    function downloadFile(string $fileName): void;
 
     function getAllFiles(): array;
+
+    function getFileContentByName(string $name): array;
 }

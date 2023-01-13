@@ -2,11 +2,7 @@
 
 interface Dao
 {
-    function getById($id);
+    function getAll(): array;
 
-    function getAll();
-
-    function create($item);
-
-    function delete($id);
+    function addAll(array $items): void;
 }
