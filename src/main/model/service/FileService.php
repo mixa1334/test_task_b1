@@ -2,13 +2,13 @@
 
 interface FileService
 {
-    function removeFile(string $fileName): void;
+    public function removeFile(string $fileName): void;
 
-    function downloadFile(string $fileName): void;
+    public function downloadFile(string $fileName): void;
 
-    function uploadFile(string $fileName): void;
+    public function uploadFile(string $fileName): void;
 
-    function getAllFiles(): array;
+    public function getAllFiles(): array;
 
-    function getFileContentByName(string $name): array;
+    public function getFileContentByName(string $name): array;
 }

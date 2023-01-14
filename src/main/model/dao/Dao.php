@@ -1,8 +1,15 @@
 <?php
 
-interface Dao
+abstract class Dao
 {
-    function getAll(): array;
+    protected ?PDO $pdo;
 
-    function addAll(array $items): void;
+    abstract public function getAll(): array;
+
+    abstract public function addAll(array $items): void;
+
+    public function setPdo(?PDO $pdo): void
+    {
+        $this->pdo = $pdo;
+    }
 }

@@ -1,6 +1,6 @@
 <?php
 
-class UserDao implements Dao
+class UserDao extends Dao
 {
     function getAll(): array
     {

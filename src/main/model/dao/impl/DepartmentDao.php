@@ -1,6 +1,6 @@
 <?php
 
-class DepartmentDao implements Dao
+class DepartmentDao extends Dao
 {
     function getAll(): array
     {

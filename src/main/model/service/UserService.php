@@ -2,9 +2,9 @@
 
 interface UserService
 {
-    function getAllUsers(): array;
+    public function getAllUsers(): array;
 
-    function uploadUsersFromFile(string $filePath): void;
+    public function uploadUsersFromFile(string $filePath): void;
 
-    function downloadUsersAsFile(): void;
+    public function downloadUsersAsFile(): void;
 }

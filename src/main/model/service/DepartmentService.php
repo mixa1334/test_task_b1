@@ -2,9 +2,9 @@
 
 interface DepartmentService
 {
-    function getAllDepartments(): array;
+    public function getAllDepartments(): array;
 
-    function uploadDepartmentsFromFile(string $filePath): void;
+    public function uploadDepartmentsFromFile(string $filePath): void;
 
-    function downloadDepartmentsAsFile(): void;
+    public function downloadDepartmentsAsFile(): void;
 }
