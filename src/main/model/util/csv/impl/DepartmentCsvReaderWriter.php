@@ -10,14 +10,14 @@ class DepartmentCsvReaderWriter extends AbstractCsvReaderWriter
 
     const COLUMN_2_NAME = "NAME_DEPARTMENT";
 
+    protected function validateRow(array $row): bool
+    {
+        return count($row) === 3 && is_string($row[0]) && is_string($row[2])
+            && $row[0] !== self::COLUMN_0_NAME && $row[1] !== self::COLUMN_1_NAME && $row[2] !== self::COLUMN_2_NAME;
+    }
+
     protected function mapToEntity(array $row): ?Department
     {
-        if (count($row) !== 3) {
-            return null;
-        }
-        if ($row[0] === self::COLUMN_0_NAME || $row[1] === self::COLUMN_1_NAME || $row[2] === self::COLUMN_2_NAME) {
-            return null;
-        }
         $department = new Department();
         $department->setXmlId($row[0]);
         $department->setParentXmlId($row[1]);

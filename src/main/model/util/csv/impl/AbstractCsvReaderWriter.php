@@ -14,14 +14,15 @@ abstract class AbstractCsvReaderWriter implements CsvReaderWriter
         }
         while (!feof($file)) {
             $row = fgetcsv($file, null, $this->separator);
-            $item = $this->mapToEntity($row);
-            if (isset($item)) {
-                $result[] = $item;
+            if (is_array($row) && $this->validateRow($row)) {
+                $result[] = $this->mapToEntity($row);
             }
         }
         fclose($file);
         return $result;
     }
+
+    abstract protected function validateRow(array $row): bool;
 
     abstract protected function mapToEntity(array $row);
 
