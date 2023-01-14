@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost:8889
--- Generation Time: Jan 13, 2023 at 01:48 PM
+-- Generation Time: Jan 14, 2023 at 06:45 PM
 -- Server version: 5.7.24
 -- PHP Version: 8.1.0
 
@@ -30,10 +30,13 @@ USE `test_task`;
 --
 
 DROP TABLE IF EXISTS `departments`;
-CREATE TABLE `departments` (
+CREATE TABLE IF NOT EXISTS `departments` (
   `xml_id` varchar(20) NOT NULL,
   `parent_xml_id` varchar(20) DEFAULT NULL,
-  `name_department` varchar(100) NOT NULL
+  `name_department` varchar(100) NOT NULL,
+  PRIMARY KEY (`xml_id`),
+  UNIQUE KEY `xml_id` (`xml_id`),
+  KEY `parent_xml_id` (`parent_xml_id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
@@ -55,7 +58,7 @@ INSERT INTO `departments` (`xml_id`, `parent_xml_id`, `name_department`) VALUES
 --
 
 DROP TABLE IF EXISTS `users`;
-CREATE TABLE `users` (
+CREATE TABLE IF NOT EXISTS `users` (
   `xml_id` varchar(20) NOT NULL,
   `last_name` varchar(100) NOT NULL,
   `name` varchar(100) NOT NULL,
@@ -66,7 +69,10 @@ CREATE TABLE `users` (
   `mobile_phone` varchar(100) DEFAULT NULL,
   `phone` varchar(100) DEFAULT NULL,
   `login` varchar(100) NOT NULL,
-  `password` varchar(100) NOT NULL
+  `password` varchar(100) NOT NULL,
+  PRIMARY KEY (`xml_id`),
+  UNIQUE KEY `xml_id` (`xml_id`),
+  KEY `department` (`department`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
@@ -81,34 +87,8 @@ INSERT INTO `users` (`xml_id`, `last_name`, `name`, `second_name`, `department`,
 ('CN005', 'Калашников', 'Евгений', 'Валентинович', 'OU005', 'Руководитель департамента', 'ekalashnikov@company.ru', '74232497777', '74957556983', 'ekalashnikov', 'ekalashnikov');
 
 --
--- Indexes for dumped tables
---
-
---
--- Indexes for table `departments`
---
-ALTER TABLE `departments`
-  ADD PRIMARY KEY (`xml_id`),
-  ADD UNIQUE KEY `xml_id` (`xml_id`),
-  ADD KEY `parent_xml_id` (`parent_xml_id`);
-
---
--- Indexes for table `users`
---
-ALTER TABLE `users`
-  ADD PRIMARY KEY (`xml_id`),
-  ADD UNIQUE KEY `xml_id` (`xml_id`),
-  ADD KEY `department` (`department`);
-
---
 -- Constraints for dumped tables
 --
-
---
--- Constraints for table `departments`
---
-ALTER TABLE `departments`
-  ADD CONSTRAINT `departments_ibfk_1` FOREIGN KEY (`parent_xml_id`) REFERENCES `departments` (`xml_id`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
 -- Constraints for table `users`

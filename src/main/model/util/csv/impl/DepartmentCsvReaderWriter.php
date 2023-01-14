@@ -16,7 +16,7 @@ class DepartmentCsvReaderWriter extends AbstractCsvReaderWriter
             && $row[0] !== self::COLUMN_0_NAME && $row[1] !== self::COLUMN_1_NAME && $row[2] !== self::COLUMN_2_NAME;
     }
 
-    protected function mapToEntity(array $row): ?Department
+    protected function mapToEntity(array $row): Department
     {
         $department = new Department();
         $department->setXmlId($row[0]);

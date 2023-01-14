@@ -1,9 +1,9 @@
 <?php
 require_once "Command.php";
+require_once __DIR__ . "/../../container/Container.php";
 
 enum CommandProvider: string
 {
-    //todo array of services
 
     //FAQ
     case SHOW_FAQ_PAGE = "impl/faq/ShowFaqPage.php";
@@ -19,22 +19,20 @@ enum CommandProvider: string
     case SHOW_FILE_INFO = "impl/uploads/file/ShowFileInfo.php";
     case SHOW_UPLOADS_PAGE = "impl/uploads/ShowUploadsPage.php";
 
-    /**
-     * @throws CommandException
-     */
-    public static function provideCommand(string $commandName): Command
+    public static function provideCommand(string $commandName, Container $container): ?Command
     {
         $commandName = strtoupper($commandName);
         foreach (self::cases() as $command) {
             if ($commandName === $command->name) {
                 require_once $command->value;
-                return $command->getCommand();
+                return $command->getCommand($container);
             }
         }
-        throw new CommandException("command is not a valid: $commandName");
+        return null;
     }
 
-    private function getCommand(): Command
+//    todo move to container
+    private function getCommand(Container $container): Command
     {
         return match ($this) {
             CommandProvider::SHOW_FAQ_PAGE => new ShowFaqPage(),

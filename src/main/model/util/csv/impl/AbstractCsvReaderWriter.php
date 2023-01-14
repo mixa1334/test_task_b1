@@ -24,7 +24,7 @@ abstract class AbstractCsvReaderWriter implements CsvReaderWriter
 
     abstract protected function validateRow(array $row): bool;
 
-    abstract protected function mapToEntity(array $row);
+    abstract protected function mapToEntity(array $row): mixed;
 
     public function write(string $fileName, string $mode, array $data): bool
     {
