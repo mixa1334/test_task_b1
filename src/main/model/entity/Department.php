@@ -4,7 +4,7 @@ class Department
 {
     private string $xmlId;
 
-    private string $parentXmlId;
+    private ?string $parentXmlId;
 
     private string $nameDepartment;
 
@@ -25,17 +25,17 @@ class Department
     }
 
     /**
-     * @return string
+     * @return ?string
      */
-    public function getParentXmlId(): string
+    public function getParentXmlId(): ?string
     {
         return $this->parentXmlId;
     }
 
     /**
-     * @param string $parentXmlId
+     * @param ?string $parentXmlId
      */
-    public function setParentXmlId(string $parentXmlId): void
+    public function setParentXmlId(?string $parentXmlId): void
     {
         $this->parentXmlId = $parentXmlId;
     }

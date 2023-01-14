@@ -7,7 +7,7 @@ class FileServiceImpl implements FileService
         // TODO: Implement removeFile() method.
     }
 
-    function uploadFile(string $tmpFileName): void
+    function uploadFile(string $fileName): void
     {
         // TODO: Implement uploadFile() method.
     }

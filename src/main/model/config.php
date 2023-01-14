@@ -1,8 +1,10 @@
 <?php
 $config = array(
-    'DB_HOST' => 'localhost',
-    'DB_PORT' => '8889',
-    'DB_USERNAME' => 'root',
-    'DB_PASSWORD' => 'root',
-    'DB_DATABASE' => 'test_task'
+    'DB' => array(
+        'DB_HOST' => 'localhost',
+        'DB_PORT' => '8889',
+        'DB_USERNAME' => 'root',
+        'DB_PASSWORD' => 'root',
+        'DB_DATABASE' => 'test_task'
+    )
 );

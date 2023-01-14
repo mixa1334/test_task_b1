@@ -3,15 +3,15 @@
 class User
 {
     private string $xmlId;
-    private string $lastNAme;
+    private string $lastName;
     private string $name;
     private string $secondName;
     private string $department;
     private string $workPosition;
 
     private string $email;
-    private string $mobilePhone;
-    private string $phone;
+    private ?string $mobilePhone;
+    private ?string $phone;
     private string $login;
     private string $password;
 
@@ -34,17 +34,17 @@ class User
     /**
      * @return string
      */
-    public function getLastNAme(): string
+    public function getLastName(): string
     {
-        return $this->lastNAme;
+        return $this->lastName;
     }
 
     /**
-     * @param string $lastNAme
+     * @param string $lastName
      */
-    public function setLastNAme(string $lastNAme): void
+    public function setLastName(string $lastName): void
     {
-        $this->lastNAme = $lastNAme;
+        $this->lastName = $lastName;
     }
 
     /**
@@ -128,33 +128,33 @@ class User
     }
 
     /**
-     * @return string
+     * @return ?string
      */
-    public function getMobilePhone(): string
+    public function getMobilePhone(): ?string
     {
         return $this->mobilePhone;
     }
 
     /**
-     * @param string $mobilePhone
+     * @param ?string $mobilePhone
      */
-    public function setMobilePhone(string $mobilePhone): void
+    public function setMobilePhone(?string $mobilePhone): void
     {
         $this->mobilePhone = $mobilePhone;
     }
 
     /**
-     * @return string
+     * @return ?string
      */
-    public function getPhone(): string
+    public function getPhone(): ?string
     {
         return $this->phone;
     }
 
     /**
-     * @param string $phone
+     * @param ?string $phone
      */
-    public function setPhone(string $phone): void
+    public function setPhone(?string $phone): void
     {
         $this->phone = $phone;
     }
