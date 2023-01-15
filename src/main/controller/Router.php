@@ -2,29 +2,29 @@
 
 class Router
 {
-    private string $path;
+    private ?string $path;
 
     private bool $hasError = false;
 
     private int $errorCode;
 
-    public function __construct(string $path)
+    public function __construct(?string $path)
     {
         $this->path = $path;
     }
 
     /**
-     * @return string
+     * @return ?string
      */
-    public function getPath(): string
+    public function getPath(): ?string
     {
         return $this->path;
     }
 
     /**
-     * @param string $path
+     * @param ?string $path
      */
-    public function setPath(string $path): void
+    public function setPath(?string $path): void
     {
         $this->path = $path;
     }

@@ -1,8 +1,5 @@
 <?php
-require_once "command/Command.php";
 require_once "command/CommandProvider.php";
-require_once "Router.php";
-require_once __DIR__ . "/../container/Container.php";
 
 class Controller
 {
@@ -31,7 +28,9 @@ class Controller
                         http_response_code($code);
                     } else {
                         $page = $router->getPath();
-                        include_once $page;
+                        if (isset($page)) {
+                            include_once $page;
+                        }
                     }
                 } catch (CommandException $e) {
                     //todo logger

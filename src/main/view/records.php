@@ -13,11 +13,13 @@ include_once "fragment/header.php"; ?>
         </tr>
         </thead>
         <tbody>
-        <tr>
-            <td>some info</td>
-            <td>some info</td>
-            <td>some info</td>
-        </tr>
+        <?php foreach ($GLOBALS['departments'] as $department): ?>
+            <tr>
+                <td><?php echo $department->getXmlId() ?></td>
+                <td><?php echo $department->getParentXmlId() ?></td>
+                <td><?php echo $department->getNameDepartment() ?></td>
+            </tr>
+        <?php endforeach; ?>
         </tbody>
     </table>
 
@@ -47,16 +49,34 @@ include_once "fragment/header.php"; ?>
         <thead class="table-dark">
         <tr>
             <th>xml id</th>
-            <th>parent xml id</th>
-            <th>name department</th>
+            <th>last name</th>
+            <th>name</th>
+            <th>second name</th>
+            <th>department</th>
+            <th>work position</th>
+            <th>email</th>
+            <th>mobile phone</th>
+            <th>phone</th>
+            <th>login</th>
+            <th>password</th>
         </tr>
         </thead>
         <tbody>
-        <tr>
-            <td>some info</td>
-            <td>some info</td>
-            <td>some info</td>
-        </tr>
+        <?php foreach ($GLOBALS['users'] as $user): ?>
+            <tr>
+                <td><?php echo $user->getXmlId() ?></td>
+                <td><?php echo $user->getLastName() ?></td>
+                <td><?php echo $user->getName() ?></td>
+                <td><?php echo $user->getSecondName() ?></td>
+                <td><?php echo $user->getDepartment() ?></td>
+                <td><?php echo $user->getWorkPosition() ?></td>
+                <td><?php echo $user->getEmail() ?></td>
+                <td><?php echo $user->getMobilePhone() ?></td>
+                <td><?php echo $user->getPhone() ?></td>
+                <td><?php echo $user->getLogin() ?></td>
+                <td><?php echo $user->getPassword() ?></td>
+            </tr>
+        <?php endforeach; ?>
         </tbody>
     </table>
 
