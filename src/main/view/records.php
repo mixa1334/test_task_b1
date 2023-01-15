@@ -23,12 +23,12 @@ include_once "fragment/header.php"; ?>
         </tbody>
     </table>
 
-    <form action="/index.php" method="get" class="text-center">
+    <form action="/test_task/index.php" method="get" class="text-center">
         <input type="hidden" name="command" value="DOWNLOAD_DEPARTMENTS">
         <input type="submit" class="btn btn-success" value="Скачать">
     </form>
 
-    <form action="/index.php" method="post" enctype="multipart/form-data" style="margin: 5%;">
+    <form action="/test_task/index.php" method="post" enctype="multipart/form-data" style="margin: 5%;">
         <div class="form-group">
             <label for="departmentFile" class="form-label">Выберите файл для загрузки департаментов: </label>
             <input type="file" id="departmentFile" name="file" class="form-control" style="max-width: 35%;">
@@ -80,12 +80,12 @@ include_once "fragment/header.php"; ?>
         </tbody>
     </table>
 
-    <form action="/index.php" method="get" class="text-center">
+    <form action="/test_task/index.php" method="get" class="text-center">
         <input type="hidden" name="command" value="DOWNLOAD_USERS">
         <input type="submit" class="btn btn-success" value="Скачать">
     </form>
 
-    <form action="/index.php" method="post" enctype="multipart/form-data" style="margin: 5%;">
+    <form action="/test_task/index.php" method="post" enctype="multipart/form-data" style="margin: 5%;">
         <div class="form-group">
             <label for="userFile" class="form-label">Выберите файл для загрузки пользователей: </label>
             <input type="file" id="userFile" name="file" class="form-control" style="max-width: 35%;">

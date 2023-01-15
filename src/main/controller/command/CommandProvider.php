@@ -1,28 +1,35 @@
 <?php
+require_once __DIR__."/impl/faq/ShowFaqPage.php";
+require_once __DIR__."/impl/records/DownloadRecords.php";
+require_once __DIR__."/impl/records/UploadRecords.php";
+require_once __DIR__."/impl/records/ShowRecordsPage.php";
+require_once __DIR__."/impl/uploads/file/DeleteFile.php";
+require_once __DIR__."/impl/uploads/file/DownloadFile.php";
+require_once __DIR__."/impl/uploads/file/ShowFileInfo.php";
+require_once __DIR__."/impl/uploads/ShowUploadsPage.php";
 
-enum CommandProvider: string
+enum CommandProvider
 {
 
     //FAQ
-    case SHOW_FAQ_PAGE = "impl/faq/ShowFaqPage.php";
+    case SHOW_FAQ_PAGE;
     //RECORDS
-    case DOWNLOAD_DEPARTMENTS = "impl/records/departments/DownloadRecords.php";
-    case UPLOAD_DEPARTMENTS = "impl/records/departments/UploadRecords.php";
-    case DOWNLOAD_USERS = "impl/records/users/DownloadRecords.php";
-    case UPLOAD_USERS = "impl/records/users/UploadRecords.php";
-    case SHOW_RECORDS_PAGE = "impl/records/ShowRecordsPage.php";
+    case DOWNLOAD_DEPARTMENTS;
+    case UPLOAD_DEPARTMENTS;
+    case DOWNLOAD_USERS;
+    case UPLOAD_USERS;
+    case SHOW_RECORDS_PAGE;
     //FILES
-    case DELETE_FILE = "impl/uploads/file/DeleteFile.php";
-    case DOWNLOAD_FILE = "impl/uploads/file/DownloadFile.php";
-    case SHOW_FILE_INFO = "impl/uploads/file/ShowFileInfo.php";
-    case SHOW_UPLOADS_PAGE = "impl/uploads/ShowUploadsPage.php";
+    case DELETE_FILE;
+    case DOWNLOAD_FILE;
+    case SHOW_FILE_INFO;
+    case SHOW_UPLOADS_PAGE;
 
     public static function provideCommand(string $commandName, Container $container): ?Command
     {
         $commandName = strtoupper($commandName);
         foreach (self::cases() as $command) {
             if ($commandName === $command->name) {
-                require_once $command->value;
                 return $command->getCommand($container);
             }
         }
@@ -34,11 +41,11 @@ enum CommandProvider: string
     {
         return match ($this) {
             CommandProvider::SHOW_FAQ_PAGE => new ShowFaqPage(),
-            CommandProvider::DOWNLOAD_DEPARTMENTS => new DownloadRecords(),
-            CommandProvider::UPLOAD_DEPARTMENTS => new UploadRecords(),
-            CommandProvider::DOWNLOAD_USERS => new DownloadRecords(),
-            CommandProvider::UPLOAD_USERS => new UploadRecords(),
-            CommandProvider::SHOW_RECORDS_PAGE => new ShowRecordsPage(),
+            CommandProvider::DOWNLOAD_DEPARTMENTS => new DownloadRecords($container->get('DepartmentService'), $container->get('DepartmentCsvReaderWriter')),
+            CommandProvider::UPLOAD_DEPARTMENTS => new UploadRecords($container->get('DepartmentService'), $container->get('FileService')),
+            CommandProvider::DOWNLOAD_USERS => new DownloadRecords($container->get('UserService'), $container->get('UserCsvReaderWriter')),
+            CommandProvider::UPLOAD_USERS => new UploadRecords($container->get('UserService'), $container->get('FileService')),
+            CommandProvider::SHOW_RECORDS_PAGE => new ShowRecordsPage($container->get('DepartmentService'), $container->get('UserService')),
             CommandProvider::DELETE_FILE => new DeleteFile(),
             CommandProvider::DOWNLOAD_FILE => new DownloadFile(),
             CommandProvider::SHOW_FILE_INFO => new ShowFileInfo(),

@@ -16,7 +16,7 @@ include_once "fragment/header.php"; ?>
         <td><h5>имя файла</h5></td>
         <td>
 <!--            todo file_name-->
-            <form action="/index.php" method="get" class="text-center">
+            <form action="/test_task/index.php" method="get" class="text-center">
                 <input type="hidden" name="command" value="SHOW_FILE_INFO">
                 <input type="hidden" name="file_name" value="">
                 <input type="submit" class="btn btn-success" value="информация">

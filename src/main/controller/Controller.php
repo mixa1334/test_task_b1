@@ -38,7 +38,7 @@ class Controller
                 }
             }
         } else {
-            http_response_code(400);
+            include_once __DIR__ . "/../view/faq.php";
         }
     }
 }

@@ -23,14 +23,14 @@ include_once "fragment/header.php"; ?>
     <!--todo file_name value-->
     <div class="row">
         <div class="col-sm-1">
-            <form action="/index.php" method="get">
+            <form action="/test_task/index.php" method="get">
                 <input type="hidden" name="command" value="DOWNLOAD_FILE">
                 <input type="hidden" name="file_name" value="">
                 <input type="submit" class="btn btn-success" value="Скачать">
             </form>
         </div>
         <div class="col-sm-11">
-            <form action="/index.php" method="post">
+            <form action="/test_task/index.php" method="post">
                 <input type="hidden" name="command" value="DELETE_FILE">
                 <input type="hidden" name="file_name" value="">
                 <input type="submit" class="btn btn-danger" value="Удалить">

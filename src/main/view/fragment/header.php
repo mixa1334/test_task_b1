@@ -16,13 +16,13 @@
             <div class="collapse navbar-collapse" style="margin-left: 5%">
                 <ul class="navbar-nav me-auto">
                     <li class="nav-item">
-                        <a class="nav-link" href="/index.php?command=SHOW_RECORDS_PAGE">Данные</a>
+                        <a class="nav-link" href="/test_task/index.php?command=SHOW_RECORDS_PAGE">Данные</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="/index.php?command=SHOW_UPLOADS_PAGE">Файлы</a>
+                        <a class="nav-link" href="/test_task/index.php?command=SHOW_UPLOADS_PAGE">Файлы</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="/index.php?command=SHOW_FAQ_PAGE">FAQ</a>
+                        <a class="nav-link" href="/test_task/index.php?command=SHOW_FAQ_PAGE">FAQ</a>
                     </li>
                 </ul>
             </div>
