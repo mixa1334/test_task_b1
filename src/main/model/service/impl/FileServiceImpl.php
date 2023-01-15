@@ -1,31 +1,52 @@
 <?php
+require_once __DIR__ . "/../FileService.php";
+require_once __DIR__ . "/../../util/csv/CsvReaderWriter.php";
 
 class FileServiceImpl implements FileService
 {
-    function removeFile(string $fileName): void
+    private const UPLOADS = __DIR__ . "/../../../../../uploads/";
+    private CsvReaderWriter $csvReaderWriter;
+
+    /**
+     * @param CsvReaderWriter $csvReaderWriter
+     */
+    public function __construct(CsvReaderWriter $csvReaderWriter)
     {
-        // TODO: Implement removeFile() method.
+        $this->csvReaderWriter = $csvReaderWriter;
     }
 
-    function uploadFile(string $fileName): void
+    public function removeFile(string $fileName): bool
     {
-        // TODO: Implement uploadFile() method.
+        $fullPath = $this->convertToFullPath($fileName);
+        return file_exists($fullPath) && unlink($fullPath);
     }
 
-    function downloadFile(string $fileName): void
+    public function uploadFile(string $filePath, string $fileName): bool
     {
-        // TODO: Implement sendFile() method.
+        $newFilePath = $this->convertToFullPath($fileName);
+        return file_exists($filePath) && !file_exists($newFilePath) && move_uploaded_file($filePath, $newFilePath);
     }
 
-    function getAllFiles(): array
+    public function getFilePath(string $fileName): ?string
     {
-        // TODO: Implement getAllFiles() method.
+        $fullPath = $this->convertToFullPath($fileName);
+        return file_exists($fullPath) ? $fullPath : null;
     }
 
-    function getFileContentByName(string $name): array
+    public function getAllFiles(): array
     {
-        // TODO: Implement getFileContentByName() method.
+        return array_diff(scandir(self::UPLOADS), array('.', '..'));
     }
 
+    public function getFileContentByName(string $fileName): array
+    {
+        $fullPath = $this->convertToFullPath($fileName);
+        return $this->csvReaderWriter->read($fullPath);
+    }
+
+    private function convertToFullPath(string $fileName): string
+    {
+        return self::UPLOADS . $fileName;
+    }
 
 }
