@@ -4,7 +4,6 @@ require_once __DIR__ . "/../../container/Container.php";
 
 enum CommandProvider: string
 {
-
     //FAQ
     case SHOW_FAQ_PAGE = "impl/faq/ShowFaqPage.php";
     //RECORDS
@@ -31,20 +30,19 @@ enum CommandProvider: string
         return null;
     }
 
-//    todo move to container
     private function getCommand(Container $container): Command
     {
         return match ($this) {
-            CommandProvider::SHOW_FAQ_PAGE => new ShowFaqPage(),
-            CommandProvider::DOWNLOAD_DEPARTMENTS => new DownloadDepartments(),
-            CommandProvider::UPLOAD_DEPARTMENTS => new UploadDepartments(),
-            CommandProvider::DOWNLOAD_USERS => new DownloadUsers(),
-            CommandProvider::UPLOAD_USERS => new UploadUsers(),
-            CommandProvider::SHOW_RECORDS_PAGE => new ShowRecordsPage(),
-            CommandProvider::DELETE_FILE => new DeleteFile(),
-            CommandProvider::DOWNLOAD_FILE => new DownloadFile(),
-            CommandProvider::SHOW_FILE_INFO => new ShowFileInfo(),
-            CommandProvider::SHOW_UPLOADS_PAGE => new ShowUploadsPage()
+            CommandProvider::SHOW_FAQ_PAGE => $container->get("SHOW_FAQ_PAGE"),
+            CommandProvider::DOWNLOAD_DEPARTMENTS => $container->get("DOWNLOAD_DEPARTMENTS"),
+            CommandProvider::UPLOAD_DEPARTMENTS => $container->get("UPLOAD_DEPARTMENTS"),
+            CommandProvider::DOWNLOAD_USERS => $container->get("DOWNLOAD_USERS"),
+            CommandProvider::UPLOAD_USERS => $container->get("UPLOAD_USERS"),
+            CommandProvider::SHOW_RECORDS_PAGE => $container->get("SHOW_RECORDS_PAGE"),
+            CommandProvider::DELETE_FILE => $container->get("DELETE_FILE"),
+            CommandProvider::DOWNLOAD_FILE => $container->get("DOWNLOAD_FILE"),
+            CommandProvider::SHOW_FILE_INFO => $container->get("SHOW_FILE_INFO"),
+            CommandProvider::SHOW_UPLOADS_PAGE => $container->get("SHOW_UPLOADS_PAGE")
         };
     }
 }
