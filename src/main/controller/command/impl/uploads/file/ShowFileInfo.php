@@ -14,15 +14,16 @@ class ShowFileInfo implements Command
     }
 
 
-    public function execute(): void
+    public function execute(): Router
     {
         if ($_SERVER["REQUEST_METHOD"] == "GET" && isset($_GET['file_name'])) {
-            $fileName = $_GET['file_name'];
+            $fileName = htmlspecialchars($_GET['file_name']);
             $fileContent = $this->fileService->getFileContentByName($fileName);
             if (!empty($fileContent)) {
                 include_once __DIR__ . "/../../../../../view/file_info.php";
             }
         }
+        return new Router(null);
     }
 
 }

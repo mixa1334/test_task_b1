@@ -17,7 +17,7 @@ class UploadRecords implements Command
     }
 
 
-    public function execute(): void
+    public function execute(): Router
     {
         if ($_SERVER["REQUEST_METHOD"] == "POST" && $_FILES && isset($_FILES['files'])) {
             try {
@@ -27,6 +27,7 @@ class UploadRecords implements Command
                 throw new CommandException($e->getMessage());
             }
         }
+        return new Router(CommandProvider::SHOW_RECORDS_PAGE->name);
     }
 
 }

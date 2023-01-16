@@ -17,7 +17,7 @@ class DownloadRecords implements Command
         $this->csvReaderWriter = $csvReaderWriter;
     }
 
-    public function execute(): void
+    public function execute(): Router
     {
         try {
             $items = $this->service->getAllEntities();
@@ -38,6 +38,8 @@ class DownloadRecords implements Command
         readfile($tempFile);
 
         unlink($tempFile);
+
+        return new Router(null);
     }
 
 }

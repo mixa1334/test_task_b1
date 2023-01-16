@@ -19,16 +19,25 @@ class Controller
         $commandName = $_REQUEST['command'];
         if (is_string($commandName)) {
             $commandName = htmlspecialchars($commandName);
-            $command = CommandProvider::provideCommand($commandName, $this->container);
-            if (isset($command)) {
-                try {
-                    $command->execute();
-                } catch (CommandException $e) {
-                    http_response_code(500);
-                }
-            }
+            $this->executeCommand($commandName);
         } else {
             include_once __DIR__ . "/../view/faq.php";
+        }
+    }
+
+    private function executeCommand(string $commandName): void
+    {
+        $command = CommandProvider::provideCommand($commandName, $this->container);
+        if (isset($command)) {
+            try {
+                $router = $command->execute();
+                $forward = $router->getCommand();
+                if (is_string($forward)) {
+                    $this->executeCommand($forward);
+                }
+            } catch (CommandException $e) {
+                http_response_code(500);
+            }
         }
     }
 }

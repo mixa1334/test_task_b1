@@ -14,10 +14,10 @@ class DownloadFile implements Command
     }
 
 
-    public function execute(): void
+    public function execute(): Router
     {
         if ($_SERVER["REQUEST_METHOD"] == "GET" && isset($_GET['file_name'])) {
-            $fileName = $_GET['file_name'];
+            $fileName = htmlspecialchars($_GET['file_name']);
             $fullPath = $this->fileService->getFilePath($fileName);
             if (is_string($fullPath)) {
                 header("Cache-Control: public");
@@ -28,6 +28,7 @@ class DownloadFile implements Command
                 readfile($fullPath);
             }
         }
+        return new Router(null);
     }
 
 }
