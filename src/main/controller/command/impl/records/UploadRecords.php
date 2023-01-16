@@ -19,10 +19,12 @@ class UploadRecords implements Command
 
     public function execute(): CommandRouter
     {
-        if ($_SERVER["REQUEST_METHOD"] == "POST" && $_FILES && isset($_FILES['files'])) {
+        if ($_SERVER["REQUEST_METHOD"] == "POST" && $_FILES && isset($_FILES['file'])) {
             try {
-                $this->entityService->uploadEntitiesFromFile($_FILES['file']['tmp_name']);
-                $this->fileService->uploadFile($_FILES['file']['tmp_name'], basename($_FILES['file']['name']));
+                $tmpFile = $_FILES['file']['tmp_name'];
+                $baseName = basename($_FILES['file']['name']);
+                $this->entityService->uploadEntitiesFromFile($tmpFile);
+                $this->fileService->uploadFile($tmpFile, $baseName);
             } catch (ModelException $e) {
                 throw new CommandException($e->getMessage());
             }
