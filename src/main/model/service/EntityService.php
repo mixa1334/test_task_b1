@@ -17,4 +17,9 @@ interface EntityService
      * @throws ModelException
      */
     public function downloadEntitiesAsFile(string $fileName): void;
+
+    /**
+     * @throws ModelException
+     */
+    public function removeAllEntities(): void;
 }

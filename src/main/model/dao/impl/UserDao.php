@@ -29,15 +29,16 @@ class UserDao extends Dao
                    password
                    ) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
 
+    private const DELETE_USERS = "DELETE FROM users";
 
-    function getAll(): array
+    public function getAll(): array
     {
         $stmt = $this->pdo->prepare(self::SELECT_USERS);
         $stmt->execute();
         return $stmt->fetchAll(PDO::FETCH_CLASS, User::class);
     }
 
-    function addAll(array $items): void
+    public function addAll(array $items): void
     {
         $stmt = $this->pdo->prepare(self::INSERT_USER);
         foreach ($items as $item) {
@@ -57,5 +58,11 @@ class UserDao extends Dao
             $stmt->execute($params);
         }
     }
+
+    public function removeAll(): void
+    {
+        $this->pdo->query(self::DELETE_USERS);
+    }
+
 
 }

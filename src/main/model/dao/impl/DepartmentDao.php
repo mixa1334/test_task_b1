@@ -14,6 +14,8 @@ class DepartmentDao extends Dao
                          name_department
                          ) VALUES (?, ?, ?)";
 
+    private const DELETE_DEPARTMENTS = "DELETE FROM departments";
+
     public function getAll(): array
     {
         $stmt = $this->pdo->prepare(self::SELECT_DEPARTMENTS);
@@ -30,4 +32,8 @@ class DepartmentDao extends Dao
         }
     }
 
+    public function removeAll(): void
+    {
+        $this->pdo->query(self::DELETE_DEPARTMENTS);
+    }
 }

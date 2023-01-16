@@ -8,6 +8,8 @@ abstract class Dao
 
     abstract public function addAll(array $items): void;
 
+    abstract public function removeAll(): void;
+
     public function setPdo(?PDO $pdo): void
     {
         $this->pdo = $pdo;

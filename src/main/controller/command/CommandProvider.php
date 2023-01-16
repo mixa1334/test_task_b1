@@ -1,5 +1,6 @@
 <?php
 require_once __DIR__ . "/impl/faq/ShowFaqPage.php";
+require_once __DIR__ . "/impl/records/DeleteRecords.php";
 require_once __DIR__ . "/impl/records/DownloadRecords.php";
 require_once __DIR__ . "/impl/records/UploadRecords.php";
 require_once __DIR__ . "/impl/records/ShowRecordsPage.php";
@@ -16,8 +17,10 @@ enum CommandProvider
     //RECORDS
     case DOWNLOAD_DEPARTMENTS;
     case UPLOAD_DEPARTMENTS;
+    case DELETE_DEPARTMENTS;
     case DOWNLOAD_USERS;
     case UPLOAD_USERS;
+    case DELETE_USERS;
     case SHOW_RECORDS_PAGE;
     //FILES
     case DELETE_FILE;
@@ -42,8 +45,10 @@ enum CommandProvider
             CommandProvider::SHOW_FAQ_PAGE => new ShowFaqPage(),
             CommandProvider::DOWNLOAD_DEPARTMENTS => new DownloadRecords($container->get('DepartmentService'), $container->get('DepartmentCsvReaderWriter')),
             CommandProvider::UPLOAD_DEPARTMENTS => new UploadRecords($container->get('DepartmentService'), $container->get('FileService')),
+            CommandProvider::DELETE_DEPARTMENTS => new DeleteRecords($container->get('DepartmentService')),
             CommandProvider::DOWNLOAD_USERS => new DownloadRecords($container->get('UserService'), $container->get('UserCsvReaderWriter')),
             CommandProvider::UPLOAD_USERS => new UploadRecords($container->get('UserService'), $container->get('FileService')),
+            CommandProvider::DELETE_USERS => new DeleteRecords($container->get('UserService')),
             CommandProvider::SHOW_RECORDS_PAGE => new ShowRecordsPage($container->get('DepartmentService'), $container->get('UserService')),
             CommandProvider::DELETE_FILE => new DeleteFile($container->get('FileService')),
             CommandProvider::DOWNLOAD_FILE => new DownloadFile($container->get('FileService')),

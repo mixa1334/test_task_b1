@@ -69,4 +69,17 @@ class EntityServiceImpl implements EntityService
         }
     }
 
+    public function removeAllEntities(): void
+    {
+        $pdo = $this->dbConnection->getConnection();
+        $this->dao->setPdo($pdo);
+        try {
+            $this->dao->removeAll();
+        } catch (Exception $exception) {
+            throw new ModelException("some error in dao: " . $exception->getMessage());
+        } finally {
+            $pdo = null;
+            $this->dao->setPdo(null);
+        }
+    }
 }

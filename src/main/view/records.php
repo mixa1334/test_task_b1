@@ -23,10 +23,20 @@ include_once "fragment/header.php"; ?>
         </tbody>
     </table>
 
-    <form action="/test_task/index.php" method="get" class="text-center">
-        <input type="hidden" name="command" value="DOWNLOAD_DEPARTMENTS">
-        <input type="submit" class="btn btn-success" value="Скачать">
-    </form>
+    <div class="row">
+        <div class="col-sm-1">
+            <form action="/test_task/index.php" method="get">
+                <input type="hidden" name="command" value="DOWNLOAD_DEPARTMENTS">
+                <input type="submit" class="btn btn-success" value="Скачать">
+            </form>
+        </div>
+        <div class="col-sm-11">
+            <form action="/test_task/index.php" method="post">
+                <input type="hidden" name="command" value="DELETE_DEPARTMENTS">
+                <input type="submit" class="btn btn-danger" value="Удалить">
+            </form>
+        </div>
+    </div>
 
     <form action="/test_task/index.php" method="post" enctype="multipart/form-data" style="margin: 5%;">
         <div class="form-group">
@@ -79,11 +89,20 @@ include_once "fragment/header.php"; ?>
         <?php endforeach; ?>
         </tbody>
     </table>
-
-    <form action="/test_task/index.php" method="get" class="text-center">
-        <input type="hidden" name="command" value="DOWNLOAD_USERS">
-        <input type="submit" class="btn btn-success" value="Скачать">
-    </form>
+    <div class="row">
+        <div class="col-sm-1">
+            <form action="/test_task/index.php" method="get">
+                <input type="hidden" name="command" value="DOWNLOAD_USERS">
+                <input type="submit" class="btn btn-success" value="Скачать">
+            </form>
+        </div>
+        <div class="col-sm-11">
+            <form action="/test_task/index.php" method="post">
+                <input type="hidden" name="command" value="DELETE_USERS">
+                <input type="submit" class="btn btn-danger" value="Удалить">
+            </form>
+        </div>
+    </div>
 
     <form action="/test_task/index.php" method="post" enctype="multipart/form-data" style="margin: 5%;">
         <div class="form-group">
