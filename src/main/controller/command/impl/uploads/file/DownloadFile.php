@@ -22,7 +22,7 @@ class DownloadFile implements Command
             if (is_string($fullPath)) {
                 header("Cache-Control: public");
                 header("Content-Description: File Transfer");
-                header("Content-Disposition: attachment; filename=data.csv");
+                header("Content-Disposition: attachment; filename=$fileName");
                 header("Content-Type: application/zip");
                 header("Content-Transfer-Encoding: binary");
                 readfile($fullPath);
