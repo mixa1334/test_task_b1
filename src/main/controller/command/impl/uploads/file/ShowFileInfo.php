@@ -14,7 +14,7 @@ class ShowFileInfo implements Command
     }
 
 
-    public function execute(): Router
+    public function execute(): CommandRouter
     {
         if ($_SERVER["REQUEST_METHOD"] == "GET" && isset($_GET['file_name'])) {
             $fileName = htmlspecialchars($_GET['file_name']);
@@ -23,7 +23,7 @@ class ShowFileInfo implements Command
                 include_once __DIR__ . "/../../../../../view/file_info.php";
             }
         }
-        return new Router(null);
+        return new CommandRouter(null);
     }
 
 }

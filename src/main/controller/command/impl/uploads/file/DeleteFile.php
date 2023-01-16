@@ -13,13 +13,13 @@ class DeleteFile implements Command
         $this->fileService = $fileService;
     }
 
-    public function execute(): Router
+    public function execute(): CommandRouter
     {
         if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['file_name'])) {
             $fileName = htmlspecialchars($_POST['file_name']);
             $result = $this->fileService->removeFile($fileName);
         }
-        return new Router(CommandProvider::SHOW_UPLOADS_PAGE->name);
+        return new CommandRouter(CommandProvider::SHOW_UPLOADS_PAGE->name);
     }
 
 }

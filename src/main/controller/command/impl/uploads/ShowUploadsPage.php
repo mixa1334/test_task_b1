@@ -14,11 +14,11 @@ class ShowUploadsPage implements Command
     }
 
 
-    public function execute(): Router
+    public function execute(): CommandRouter
     {
         $files = $this->fileService->getAllFiles();
         include_once __DIR__ . "/../../../../view/uploads.php";
-        return new Router(null);
+        return new CommandRouter(null);
     }
 
 }

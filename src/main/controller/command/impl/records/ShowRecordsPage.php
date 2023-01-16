@@ -16,13 +16,13 @@ class ShowRecordsPage implements Command
         $this->userService = $userService;
     }
 
-    public function execute(): Router
+    public function execute(): CommandRouter
     {
         try {
             $departments = $this->departmentsService->getAllEntities();
             $users = $this->userService->getAllEntities();
             include_once __DIR__ . "/../../../../view/records.php";
-            return new Router(null);
+            return new CommandRouter(null);
         } catch (ModelException $e) {
             throw new CommandException($e->getMessage());
         }

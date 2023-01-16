@@ -14,7 +14,7 @@ class DownloadFile implements Command
     }
 
 
-    public function execute(): Router
+    public function execute(): CommandRouter
     {
         if ($_SERVER["REQUEST_METHOD"] == "GET" && isset($_GET['file_name'])) {
             $fileName = htmlspecialchars($_GET['file_name']);
@@ -28,7 +28,7 @@ class DownloadFile implements Command
                 readfile($fullPath);
             }
         }
-        return new Router(null);
+        return new CommandRouter(null);
     }
 
 }
