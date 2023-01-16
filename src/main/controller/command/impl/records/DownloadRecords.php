@@ -1,6 +1,5 @@
 <?php
 require_once __DIR__ . "/../../Command.php";
-require_once __DIR__ . "/../../../Router.php";
 
 class DownloadRecords implements Command
 {
@@ -18,7 +17,7 @@ class DownloadRecords implements Command
         $this->csvReaderWriter = $csvReaderWriter;
     }
 
-    public function execute(): Router
+    public function execute(): void
     {
         try {
             $items = $this->service->getAllEntities();
@@ -39,7 +38,6 @@ class DownloadRecords implements Command
         readfile($tempFile);
 
         unlink($tempFile);
-        return new Router(null);
     }
 
 }

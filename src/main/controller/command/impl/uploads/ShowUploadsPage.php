@@ -1,13 +1,23 @@
 <?php
 require_once __DIR__ . "/../../Command.php";
-require_once __DIR__ . "/../../../Router.php";
 
 class ShowUploadsPage implements Command
 {
-    public function execute(): Router
+    private FileService $fileService;
+
+    /**
+     * @param FileService $fileService
+     */
+    public function __construct(FileService $fileService)
     {
-        // TODO: Implement execute() method.
-        return new Router(null);
+        $this->fileService = $fileService;
+    }
+
+
+    public function execute(): void
+    {
+        $files = $this->fileService->getAllFiles();
+        include_once __DIR__ . "/../../../../view/uploads.php";
     }
 
 }

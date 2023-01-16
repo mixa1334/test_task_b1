@@ -22,18 +22,8 @@ class Controller
             $command = CommandProvider::provideCommand($commandName, $this->container);
             if (isset($command)) {
                 try {
-                    $router = $command->execute();
-                    if ($router->hasError()) {
-                        $code = $router->getErrorCode();
-                        http_response_code($code);
-                    } else {
-                        $page = $router->getPath();
-                        if (isset($page)) {
-                            include_once $page;
-                        }
-                    }
+                    $command->execute();
                 } catch (CommandException $e) {
-                    //todo logger
                     http_response_code(500);
                 }
             }

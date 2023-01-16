@@ -1,9 +1,5 @@
 <?php
 require_once __DIR__ . "/../../Command.php";
-require_once __DIR__ . "/../../../Router.php";
-
-$departments = array();
-$users = array();
 
 class ShowRecordsPage implements Command
 {
@@ -20,14 +16,14 @@ class ShowRecordsPage implements Command
         $this->userService = $userService;
     }
 
-    public function execute(): Router
+    public function execute(): void
     {
         try {
-            $GLOBALS['departments'] = $this->departmentsService->getAllEntities();
-            $GLOBALS['users'] = $this->userService->getAllEntities();
+            $departments = $this->departmentsService->getAllEntities();
+            $users = $this->userService->getAllEntities();
+            include_once __DIR__ . "/../../../../view/records.php";
         } catch (ModelException $e) {
             throw new CommandException($e->getMessage());
         }
-        return new Router(__DIR__ . "/../../../../view/records.php");
     }
 }

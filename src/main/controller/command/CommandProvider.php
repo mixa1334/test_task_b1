@@ -1,12 +1,12 @@
 <?php
-require_once __DIR__."/impl/faq/ShowFaqPage.php";
-require_once __DIR__."/impl/records/DownloadRecords.php";
-require_once __DIR__."/impl/records/UploadRecords.php";
-require_once __DIR__."/impl/records/ShowRecordsPage.php";
-require_once __DIR__."/impl/uploads/file/DeleteFile.php";
-require_once __DIR__."/impl/uploads/file/DownloadFile.php";
-require_once __DIR__."/impl/uploads/file/ShowFileInfo.php";
-require_once __DIR__."/impl/uploads/ShowUploadsPage.php";
+require_once __DIR__ . "/impl/faq/ShowFaqPage.php";
+require_once __DIR__ . "/impl/records/DownloadRecords.php";
+require_once __DIR__ . "/impl/records/UploadRecords.php";
+require_once __DIR__ . "/impl/records/ShowRecordsPage.php";
+require_once __DIR__ . "/impl/uploads/file/DeleteFile.php";
+require_once __DIR__ . "/impl/uploads/file/DownloadFile.php";
+require_once __DIR__ . "/impl/uploads/file/ShowFileInfo.php";
+require_once __DIR__ . "/impl/uploads/ShowUploadsPage.php";
 
 enum CommandProvider
 {
@@ -36,7 +36,6 @@ enum CommandProvider
         return null;
     }
 
-//    todo move to container
     private function getCommand(Container $container): Command
     {
         return match ($this) {
@@ -46,10 +45,10 @@ enum CommandProvider
             CommandProvider::DOWNLOAD_USERS => new DownloadRecords($container->get('UserService'), $container->get('UserCsvReaderWriter')),
             CommandProvider::UPLOAD_USERS => new UploadRecords($container->get('UserService'), $container->get('FileService')),
             CommandProvider::SHOW_RECORDS_PAGE => new ShowRecordsPage($container->get('DepartmentService'), $container->get('UserService')),
-            CommandProvider::DELETE_FILE => new DeleteFile(),
-            CommandProvider::DOWNLOAD_FILE => new DownloadFile(),
-            CommandProvider::SHOW_FILE_INFO => new ShowFileInfo(),
-            CommandProvider::SHOW_UPLOADS_PAGE => new ShowUploadsPage()
+            CommandProvider::DELETE_FILE => new DeleteFile($container->get('FileService')),
+            CommandProvider::DOWNLOAD_FILE => new DownloadFile($container->get('FileService')),
+            CommandProvider::SHOW_FILE_INFO => new ShowFileInfo($container->get('FileService')),
+            CommandProvider::SHOW_UPLOADS_PAGE => new ShowUploadsPage($container->get('FileService'))
         };
     }
 }

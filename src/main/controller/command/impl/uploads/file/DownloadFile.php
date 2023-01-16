@@ -1,13 +1,33 @@
 <?php
 require_once __DIR__ . "/../../../Command.php";
-require_once __DIR__ . "/../../../../Router.php";
 
 class DownloadFile implements Command
 {
-    public function execute(): Router
+    private FileService $fileService;
+
+    /**
+     * @param FileService $fileService
+     */
+    public function __construct(FileService $fileService)
     {
-        // TODO: Implement execute() method.
-        return new Router(null);
+        $this->fileService = $fileService;
+    }
+
+
+    public function execute(): void
+    {
+        if ($_SERVER["REQUEST_METHOD"] == "GET" && isset($_GET['file_name'])) {
+            $fileName = $_GET['file_name'];
+            $fullPath = $this->fileService->getFilePath($fileName);
+            if (is_string($fullPath)) {
+                header("Cache-Control: public");
+                header("Content-Description: File Transfer");
+                header("Content-Disposition: attachment; filename=data.csv");
+                header("Content-Type: application/zip");
+                header("Content-Transfer-Encoding: binary");
+                readfile($fullPath);
+            }
+        }
     }
 
 }

@@ -13,7 +13,7 @@ include_once "fragment/header.php"; ?>
         </tr>
         </thead>
         <tbody>
-        <?php foreach ($GLOBALS['departments'] as $department): ?>
+        <?php foreach ($departments as $department): ?>
             <tr>
                 <td><?php echo $department->getXmlId() ?></td>
                 <td><?php echo $department->getParentXmlId() ?></td>
@@ -62,7 +62,7 @@ include_once "fragment/header.php"; ?>
         </tr>
         </thead>
         <tbody>
-        <?php foreach ($GLOBALS['users'] as $user): ?>
+        <?php foreach ($users as $user): ?>
             <tr>
                 <td><?php echo $user->getXmlId() ?></td>
                 <td><?php echo $user->getLastName() ?></td>

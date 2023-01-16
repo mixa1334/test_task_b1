@@ -1,13 +1,28 @@
 <?php
 require_once __DIR__ . "/../../../Command.php";
-require_once __DIR__ . "/../../../../Router.php";
 
 class ShowFileInfo implements Command
 {
-    public function execute(): Router
+    private FileService $fileService;
+
+    /**
+     * @param FileService $fileService
+     */
+    public function __construct(FileService $fileService)
     {
-        // TODO: Implement execute() method.
-        return new Router(null);
+        $this->fileService = $fileService;
+    }
+
+
+    public function execute(): void
+    {
+        if ($_SERVER["REQUEST_METHOD"] == "GET" && isset($_GET['file_name'])) {
+            $fileName = $_GET['file_name'];
+            $fileContent = $this->fileService->getFileContentByName($fileName);
+            if (!empty($fileContent)) {
+                include_once __DIR__ . "/../../../../../view/file_info.php";
+            }
+        }
     }
 
 }

@@ -12,17 +12,18 @@ include_once "fragment/header.php"; ?>
     </tr>
     </thead>
     <tbody>
-    <tr>
-        <td><h5>имя файла</h5></td>
-        <td>
-<!--            todo file_name-->
-            <form action="/test_task/index.php" method="get" class="text-center">
-                <input type="hidden" name="command" value="SHOW_FILE_INFO">
-                <input type="hidden" name="file_name" value="">
-                <input type="submit" class="btn btn-success" value="информация">
-            </form>
-        </td>
-    </tr>
+    <?php foreach ($files as $file): ?>
+        <tr>
+            <td><h5><?php echo $file ?></h5></td>
+            <td>
+                <form action="/test_task/index.php" method="get" class="text-center">
+                    <input type="hidden" name="command" value="SHOW_FILE_INFO">
+                    <input type="hidden" name="file_name" value="<?php echo $file ?>">
+                    <input type="submit" class="btn btn-success" value="информация">
+                </form>
+            </td>
+        </tr>
+    <?php endforeach; ?>
     </tbody>
 </table>
 

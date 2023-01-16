@@ -1,6 +1,5 @@
 <?php
 require_once __DIR__ . "/../../Command.php";
-require_once __DIR__ . "/../../../Router.php";
 
 class UploadRecords implements Command
 {
@@ -18,9 +17,9 @@ class UploadRecords implements Command
     }
 
 
-    public function execute(): Router
+    public function execute(): void
     {
-        if ($_SERVER["REQUEST_METHOD"] == "POST" && $_FILES) {
+        if ($_SERVER["REQUEST_METHOD"] == "POST" && $_FILES && isset($_FILES['files'])) {
             try {
                 $this->entityService->uploadEntitiesFromFile($_FILES['file']['tmp_name']);
                 $this->fileService->uploadFile($_FILES['file']['tmp_name'], basename($_FILES['file']['name']));
@@ -28,7 +27,6 @@ class UploadRecords implements Command
                 throw new CommandException($e->getMessage());
             }
         }
-        return new Router(null);
     }
 
 }

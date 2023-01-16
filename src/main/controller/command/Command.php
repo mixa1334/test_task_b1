@@ -6,5 +6,5 @@ interface Command
     /**
      * @throws CommandException
      */
-    public function execute(): Router;
+    public function execute(): void;
 }
