@@ -1,6 +1,9 @@
 <?php
 require_once "AbstractCsvReaderWriter.php";
 
+/**
+ * Имплементация для чтения и записи строк csv файла
+ */
 class PlainCsvReaderWriter extends AbstractCsvReaderWriter
 {
     protected function validateRow(array $row): bool

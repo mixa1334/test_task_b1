@@ -1,6 +1,9 @@
 <?php
 require_once "command/CommandProvider.php";
 
+/**
+ *Класс для обработки входящих запросов на сервер
+ */
 class Controller
 {
     private Container $container;

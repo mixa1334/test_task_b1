@@ -28,6 +28,12 @@ enum CommandProvider
     case SHOW_FILE_INFO;
     case SHOW_UPLOADS_PAGE;
 
+    /**
+     * Метод для колучения команды по ключу.
+     * @param string $commandName
+     * @param Container $container
+     * @return Command|null
+     */
     public static function provideCommand(string $commandName, Container $container): ?Command
     {
         $commandName = strtoupper($commandName);
